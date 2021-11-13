@@ -5,15 +5,15 @@ Quick and dirty container for the LastPass CLI.
 # Notes
 
 - Compiled fresh with each image build.
-- **CLIPBOARD OPERATIONS work only with Linux**
-  - Obviously, this means passwords will be dumped to stdout on Windows
-  - May be able to bypass this by installing an X server on Windows and
-    properly configuring the X11 socket in the compose file.
-  - X11 socket must be shared with the container
-  - DISPLAY environment variable must be set
-- **IMPORTANT**: *LPASS_HOME* variable must be set before running
-  `docker-compose`. Point it to a directory where your LastPass data
-  should be stored.
+- Works only on Linux.
+
+# Required Environment Variables
+
+|Variable|Explanation|Default|
+|---|---|---|
+|`USER`|User that will be created in the container to ensure that file permissions are preserved in `LPASS_HOME`|n/a|
+|`LPASS_HOME`|Host directory where your LastPass data will be stored|n/a|
+|`X11_SOCKET`|Path to the X11 socket that will be passed along to the container for clipboard access|`/tmp/.X11-unix`|
 
 # Usage
 
