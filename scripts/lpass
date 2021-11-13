@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [[ $LPASS_GIT == "" ]]; then
+  echo "LPASS_GIT environment variable must point to a the directory "
+  echo "containing the compose file from docker-lastpass-cli"
+  exit
+fi
+
+if [[ $LPASS_HOME == "" ]]; then
+  echo "LPASS_HOME environment variable must point to the directory where "
+  echo "your LastPass data is to be stored."
+  exit
+fi
+
+docker-compose --project-directory "$LPASS_GIT" run \
+  --rm --name lpass --entrypoint "lpass $1" lpass

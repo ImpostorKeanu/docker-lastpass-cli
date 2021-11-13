@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  lpass:
+    build:
+      args:
+        USER: ${USER:?err}
+    environment:
+      DISPLAY: ${DISPLAY:?err}
+      LPASS_HOME: /home/${USER:?err}/lpass_data
+    volumes:
+      - ${X11_SOCKET:-/tmp/.X11-unix}:/tmp/.X11-unix
+      - ${LPASS_HOME:?err}:/home/${USER:?err}/lpass_data

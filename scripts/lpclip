@@ -1,0 +1,15 @@
+#!/bin/bash
+
+value="password"
+if [[ $1 == "" ]]; then
+    echo "Usage: $0 <record identifier> <value>"
+    echo "Hint: possible values for 'value':"
+    echo "name, username, password, all"
+    exit
+fi
+
+if [[ $2 != "" ]]; then
+    value="$2"
+fi
+
+lpass "show -c --$value $1"
